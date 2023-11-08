@@ -9,3 +9,10 @@ The rules are described below :
     - All nine squares are filled.
 - If a player is able to draw three X’s or three O’s in a row, that player wins.
 - If all nine squares are filled and neither player has three in a row, the game is a draw.
+- 
+- DRAW
+- if it the check doesnt find any empty buttons after the loop, it means all the cells on the boaerd are filled
+
+
+
+- it should return true, which means that the game is a draw because alll the cells are occupied, and there is no wiiner

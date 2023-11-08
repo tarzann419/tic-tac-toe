@@ -1,7 +1,10 @@
 package main;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Board {
- GUI_XandO XandO = new GUI_XandO();
+
+
 //    private char[][] board;
 //
 //

@@ -9,12 +9,12 @@ public class GUI_XandO implements ActionListener{
     Random random = new Random();
     JFrame frame = new JFrame();
     JPanel button_panel = new JPanel();
-    JButton[] buttons = new JButton[9];
+    public JButton[] buttons = new JButton[9];
     JButton restartButton = new JButton("Restart");
     boolean player1_turn;
 
 
-    GUI_XandO(){
+    public GUI_XandO(){
 
         restartButton.setFont(new Font("Ink free", Font.BOLD, 30));
         restartButton.addActionListener(e -> restartGame());
@@ -110,6 +110,7 @@ public class GUI_XandO implements ActionListener{
 
     public void checkWin(){
 
+        // START X WIN CHECK
         if (
                 (buttons[0].getText()=="X")&&
                         (buttons[1].getText()=="X")&&
@@ -166,7 +167,10 @@ public class GUI_XandO implements ActionListener{
         ){
             xWins(2,4,6);
         }
+        // END X WIN CHECK
 
+
+        // O WIN START CHECK
         if (
                 (buttons[0].getText()=="O")&&
                         (buttons[1].getText()=="O")&&
@@ -223,16 +227,25 @@ public class GUI_XandO implements ActionListener{
         ){
             oWins(2,4,6);
         }
+        // O WIN END CHECK
 
+        // START CHEKC DRAW
+        if (isDraw()) {
+            for (int i = 0; i < 9; i++) {
+                buttons[i].setEnabled(false);
+            }
+        }
+        // END DRAW CHECK
     }
     public void xWins(int a, int b, int c) {
-        buttons[a].setBackground(Color.GREEN);
-        buttons[b].setBackground(Color.GREEN);
-        buttons[c].setBackground(Color.GREEN);
+        buttons[a].setBackground(new Color(23, 230,0));
+        buttons[b].setBackground(new Color(23, 230,0));
+        buttons[c].setBackground(new Color(23, 230,0));
 
         for (int i = 0; i<9; i++){
             buttons[i].setEnabled(false);
         }
+        JOptionPane.showMessageDialog(null, "X wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 
     }
     public void oWins(int a, int b, int c) {
@@ -243,10 +256,22 @@ public class GUI_XandO implements ActionListener{
         for (int i = 0; i<9; i++){
             buttons[i].setEnabled(false);
         }
-
-
-
+        JOptionPane.showMessageDialog(null, "O WINS!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 
     }
+
+    public boolean isDraw(){
+//        for (int i = 0; i < buttons.length; i++) {
+//            JButton button = buttons[i];
+        for (JButton button : buttons) {
+            if (button.getText().isEmpty()) {
+                return false;
+            }
+        }
+//        System.out.println("GAME IS A DRAW");
+        JOptionPane.showMessageDialog(null, "The game is a draw!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+        return true;
+    }
+
 }
 
